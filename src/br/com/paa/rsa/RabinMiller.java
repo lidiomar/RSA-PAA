@@ -47,7 +47,7 @@ public class RabinMiller {
 			return true;
 		}else {
 			
-			/*for(int i=2; i< d.intValue(); i=i+2) {
+			for(int i=2; i< lowestSetBit; i=i+2) {
 				BigInteger exponent = d.multiply(BigInteger.valueOf(i));
 				result = aleatory.modPow(exponent, number);
 				
@@ -56,9 +56,9 @@ public class RabinMiller {
 				if(result.equals(BigInteger.ONE)) {
 					return true;
 				}
-			}*/
+			}
 			
-			BigInteger index = new BigInteger("2");
+			/*BigInteger index = new BigInteger("2");
 			while(index.compareTo(d) == -1) {
 				BigInteger exponent = d.multiply(index);
 				result = aleatory.modPow(exponent, number);
@@ -68,7 +68,7 @@ public class RabinMiller {
 					return true;
 				}
 				index = index.add(new BigInteger("2"));
-			}
+			}*/
 			
 		}
 		
