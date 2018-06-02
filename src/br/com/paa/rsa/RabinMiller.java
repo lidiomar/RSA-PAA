@@ -6,10 +6,10 @@ import java.security.SecureRandom;
 public class RabinMiller {
 	private static SecureRandom random = new SecureRandom();
 	
-	public static void isPrimeNumber(BigInteger number) {
+	public static Boolean isPrimeNumber(BigInteger number) {
 		BigInteger aleatory = getAleatoryNumberMax(number);
-		Boolean b = primalityTest(aleatory, number);
-		System.out.println(b.toString());
+		Boolean test = primalityTest(aleatory, number);
+		return test;
 	}
 	
 	public static BigInteger getAleatoryNumberMax(BigInteger number) {
@@ -74,13 +74,4 @@ public class RabinMiller {
 		
 		return false;
 	}
-	
-	public static void main(String ... args) {
-		BigInteger a = new BigInteger("100");
-		BigInteger b = new BigInteger("321");
-		
-		BigInteger p = new BigInteger(128, 100, random);
-		isPrimeNumber(p);
-	}
-	
 }
