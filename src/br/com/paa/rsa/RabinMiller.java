@@ -41,7 +41,7 @@ public class RabinMiller {
 		
 		BigInteger result = aleatory.modPow(d, number);
 		
-		System.out.println(aleatory+" ^ "+d +" (mod "+ number +") = " + result );
+		//System.out.println(aleatory+" ^ "+d +" (mod "+ number +") = " + result );
 		
 		if(result.equals(BigInteger.ONE)) { 
 			return true;
@@ -51,7 +51,7 @@ public class RabinMiller {
 				BigInteger exponent = d.multiply(BigInteger.valueOf(i));
 				result = aleatory.modPow(exponent, number);
 				
-				System.out.println(aleatory+" ^ "+ exponent +" (mod "+ number +") = " + result );
+				//System.out.println(aleatory+" ^ "+ exponent +" (mod "+ number +") = " + result );
 				
 				if(result.equals(BigInteger.ONE)) {
 					return true;
