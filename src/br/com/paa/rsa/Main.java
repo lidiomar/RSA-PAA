@@ -14,8 +14,9 @@ public class Main {
 		BigInteger e = rsaKey.getPublicKey()[1];
 		
 		EncryptionHelper encryptionHelper = new EncryptionHelper();
-		String messageToEncrypt = "Mensagem simples para criptografia";
-		encryptionHelper.encryptMessage(e, n, messageToEncrypt);
+		
+		/*String messageToEncrypt = "Mensagem simples para criptografia";
+		encryptionHelper.encryptMessage(e, n, messageToEncrypt);*/
 		
 		encryptionHelper.decryptFromFile(d, n);
 	}

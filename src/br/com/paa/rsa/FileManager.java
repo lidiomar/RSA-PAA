@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class FileManager {
 	
 	private File getFileFromResource(String fileName) {
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(fileName).getFile());
+		File file = new File(fileName);
 		return file;
 	}
 	
