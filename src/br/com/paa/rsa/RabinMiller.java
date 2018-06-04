@@ -12,6 +12,7 @@ public class RabinMiller {
 		return test;
 	}
 	
+	/*Retorna um número aleatório menor que number*/
 	public static BigInteger getAleatoryNumberMax(BigInteger number) {
 		BigInteger randomNumber = new BigInteger(number.bitLength(), random);
 		while(randomNumber.compareTo(number) != -1) {
@@ -19,6 +20,9 @@ public class RabinMiller {
 		}
 		return randomNumber;
 	}
+	
+	/*Considerado O(k log^3 n)
+	 * sendo k o número de testes feitos*/
 	
 	public static Boolean primalityTest(BigInteger aleatory, BigInteger number) {
 		/*Verificar número primo:

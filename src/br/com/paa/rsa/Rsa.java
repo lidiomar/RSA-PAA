@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 
 public class Rsa  {
 	private static SecureRandom random = new SecureRandom();
-	private static final int len = 32;
+	private static final int len = 4096;
 	
 	public RsaKey generateKeys() {
 		BigInteger prime1 = generatePrimeNumber();
@@ -42,6 +42,9 @@ public class Rsa  {
 		return rsaKey;
 	}
 	
+	/*
+	 * Considerado O(log n), tempo de execução de euclides estendido
+	 */
 	private BigInteger generateD(BigInteger phi, BigInteger eNumber) {
 		/* Euclides estendido com BigInteger não está funcionando
 		 * BigInteger extendedGcd[] = Euclidean.gcdExtended(phi, eNumber);
@@ -52,6 +55,10 @@ public class Rsa  {
 		return dNumber;
 	}
 	
+	/*
+	 * Considerado O(k log n) sendo k o número de tentativas para encontrar
+	 * phi e numberE primos
+	 */
 	private BigInteger generateE(BigInteger phi) {	
 		BigInteger numberE = new BigInteger("3");
         
@@ -62,11 +69,13 @@ public class Rsa  {
 		
 	}
 	
+	//Considerado O(1)
 	private BigInteger getNumberN(BigInteger prime1, BigInteger prime2) {
 		BigInteger nNumber = prime1.multiply(prime2);
 		return nNumber;
 	}
 	
+	//Considerado O(k log^3 n)
 	public static BigInteger generatePrimeNumber() {
 		BigInteger primeNumber = new BigInteger(len, 100, random);
 		
@@ -76,6 +85,7 @@ public class Rsa  {
 		return primeNumber;
 	}
 	
+	//Considerado O(1), não consta na documentação 
 	private BigInteger executeTotientFunction(BigInteger prime1, BigInteger prime2) {
 		
 		BigInteger phi = (prime1.subtract(BigInteger.ONE))

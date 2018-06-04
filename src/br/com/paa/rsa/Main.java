@@ -1,12 +1,15 @@
 package br.com.paa.rsa;
 
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main {
 	
 	public static void main(String[]args) {
 		Main main = new Main();
-		main.breakKey();
+		main.execute();
 		
 	}
 	
@@ -30,6 +33,10 @@ public class Main {
 	}
 	
 	public void execute() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date dateStart = new Date();
+		System.out.println(dateFormat.format(dateStart));
+		
 		Rsa rsa = new Rsa();
 		RsaKey rsaKey = rsa.generateKeys();
 		
@@ -37,9 +44,13 @@ public class Main {
 		BigInteger n = rsaKey.getPrivateKey()[1];
 		BigInteger e = rsaKey.getPublicKey()[1];
 		
+		Date dateFinish = new Date();
+		System.out.println(dateFormat.format(dateFinish));
+		
+		
 		EncryptionHelper encryptionHelper = new EncryptionHelper();
 		
-		String messageToEncrypt = "Mensagem simples para criptografia";
+		String messageToEncrypt = "Mensagem simples para criptografia Mensagem simples para criptografia";
 		encryptionHelper.encryptMessage(e, n, messageToEncrypt);
 		encryptionHelper.decryptFromFile(d, n);
 	}

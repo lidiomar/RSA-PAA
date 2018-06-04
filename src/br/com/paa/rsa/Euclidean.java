@@ -15,6 +15,7 @@ public class Euclidean {
 		return triple;
 	}
 	
+	//Complexidade O(log n)
 	public static BigInteger gcd(BigInteger p, BigInteger q) {
 		if(q.equals(BigInteger.ZERO)) {
 			return p;
