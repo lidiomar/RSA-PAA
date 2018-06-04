@@ -5,18 +5,28 @@ import java.math.BigInteger;
 public class Main {
 	
 	public static void main(String[]args) {
-		/*BigInteger eNumber = new BigInteger("36163");
-		BigInteger phi = new BigInteger("1058");
-		
-		BigInteger[] a = Euclidean.gcdExtended(new BigInteger("36163"), new BigInteger("1058"));
-		System.out.println(a[0]);
-		System.out.println(a[1]);
-		System.out.println(a[2]);
-		
-		BigInteger dNumber = eNumber.modInverse(phi);
-		System.out.println(dNumber);*/
 		Main main = new Main();
-		main.execute();
+		main.breakKey();
+		
+	}
+	
+	public void breakKey() {
+		BigInteger prime1 = Rsa.generatePrimeNumber();
+		BigInteger prime2 = Rsa.generatePrimeNumber();
+		while(prime1.compareTo(prime2) == 0) {
+			prime2 = Rsa.generatePrimeNumber();
+		}
+		BigInteger nNumber = prime1.multiply(prime2);
+		
+		System.out.println("nNumber: "+nNumber);
+		System.out.println("prime1: "+prime1);
+		System.out.println("prime2: "+prime2);
+		
+		System.out.println(Factoring.pollardRho(nNumber));
+		
+		BigInteger[] factors = Factoring.factoringInPrimeNumbers(nNumber);
+		BigInteger primeNumber1 = factors[0];
+		BigInteger primeNumber2 = factors[1];
 	}
 	
 	public void execute() {

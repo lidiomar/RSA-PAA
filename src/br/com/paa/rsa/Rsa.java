@@ -5,11 +5,16 @@ import java.security.SecureRandom;
 
 public class Rsa  {
 	private static SecureRandom random = new SecureRandom();
-	private static final int len = 2048;
+	private static final int len = 32;
 	
 	public RsaKey generateKeys() {
 		BigInteger prime1 = generatePrimeNumber();
 		BigInteger prime2 = generatePrimeNumber();
+		
+		while(prime1.compareTo(prime2) == 0) {
+			prime2 = generatePrimeNumber();
+		}
+		
 		BigInteger nNumber = getNumberN(prime1, prime2);
 		
 		BigInteger phi = executeTotientFunction(prime1, prime2);
@@ -23,6 +28,19 @@ public class Rsa  {
 		return rsaKey;
 	}
 	
+	public RsaKey generateKeysByPrimeNumbers(BigInteger prime1, BigInteger prime2) {
+		BigInteger nNumber = getNumberN(prime1, prime2);
+		
+		BigInteger phi = executeTotientFunction(prime1, prime2);
+		BigInteger eNumber = generateE(phi);
+		BigInteger dNumber = generateD(phi, eNumber);
+		
+		RsaKey rsaKey = new RsaKey();
+		rsaKey.setPrivateKey(new BigInteger[] { dNumber, nNumber });
+		rsaKey.setPublicKey(new BigInteger[] { nNumber, eNumber });
+		
+		return rsaKey;
+	}
 	
 	private BigInteger generateD(BigInteger phi, BigInteger eNumber) {
 		/* Euclides estendido com BigInteger não está funcionando
@@ -49,7 +67,7 @@ public class Rsa  {
 		return nNumber;
 	}
 	
-	private BigInteger generatePrimeNumber() {
+	public static BigInteger generatePrimeNumber() {
 		BigInteger primeNumber = new BigInteger(len, 100, random);
 		
 		while(!RabinMiller.isPrimeNumber(primeNumber)) {
