@@ -10,7 +10,7 @@ public class Factoring {
 		BigInteger factor1 = pollardRho(number);
 		BigInteger factor2 = number.divide(factor1);
 		
-		System.out.println(factor1.toString() +" * "+ factor2.toString() +" = "+ number.toString());
+		//System.out.println(factor1.toString() +" * "+ factor2.toString() +" = "+ number.toString());
 		return new BigInteger[] {factor1, factor2};
 	}
 	
@@ -28,7 +28,6 @@ public class Factoring {
 		while (true){
 			i = i.add(BigInteger.ONE);
 			xi = xi.multiply(xi).subtract(BigInteger.ONE).mod(n);
-			
 			BigInteger d = Euclidean.gcd(y.subtract(xi), n);
 			
 			if (!d.equals(BigInteger.ONE) && !d.equals(n)){

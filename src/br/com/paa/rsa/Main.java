@@ -10,22 +10,26 @@ public class Main {
 	public static void main(String[]args) {
 		Main main = new Main();
 		main.execute();
-		
 	}
 	
 	public void breakKey() {
 		BigInteger prime1 = Rsa.generatePrimeNumber();
 		BigInteger prime2 = Rsa.generatePrimeNumber();
+		
 		while(prime1.compareTo(prime2) == 0) {
 			prime2 = Rsa.generatePrimeNumber();
 		}
 		BigInteger nNumber = prime1.multiply(prime2);
 		
-		System.out.println("nNumber: "+nNumber);
-		System.out.println("prime1: "+prime1);
-		System.out.println("prime2: "+prime2);
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date dateStart = new Date();
 		
-		System.out.println(Factoring.pollardRho(nNumber));
+		Factoring.pollardRho(nNumber);
+		
+		Date dateFinish = new Date();
+		float diff = (float) (dateFinish.getTime() - dateStart.getTime());
+		float diffSeconds = diff /1000;
+		System.out.println(diffSeconds);
 		
 		BigInteger[] factors = Factoring.factoringInPrimeNumbers(nNumber);
 		BigInteger primeNumber1 = factors[0];
@@ -33,20 +37,12 @@ public class Main {
 	}
 	
 	public void execute() {
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date dateStart = new Date();
-		System.out.println(dateFormat.format(dateStart));
-		
 		Rsa rsa = new Rsa();
 		RsaKey rsaKey = rsa.generateKeys();
 		
 		BigInteger d = rsaKey.getPrivateKey()[0];
 		BigInteger n = rsaKey.getPrivateKey()[1];
 		BigInteger e = rsaKey.getPublicKey()[1];
-		
-		Date dateFinish = new Date();
-		System.out.println(dateFormat.format(dateFinish));
-		
 		
 		EncryptionHelper encryptionHelper = new EncryptionHelper();
 		

@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 
 public class Rsa  {
 	private static SecureRandom random = new SecureRandom();
-	private static final int len = 4096;
+	private static final int len = 1024;
 	
 	public RsaKey generateKeys() {
 		BigInteger prime1 = generatePrimeNumber();
@@ -46,11 +46,12 @@ public class Rsa  {
 	 * Considerado O(log n), tempo de execução de euclides estendido
 	 */
 	private BigInteger generateD(BigInteger phi, BigInteger eNumber) {
-		/* Euclides estendido com BigInteger não está funcionando
-		 * BigInteger extendedGcd[] = Euclidean.gcdExtended(phi, eNumber);
-		BigInteger dNumber = extendedGcd[0];*/
-		
-		BigInteger dNumber = eNumber.modInverse(phi);
+		/* Euclides estendido com BigInteger não está funcionando*/
+		BigInteger extendedGcd[] = Euclidean.gcdExtended(phi, eNumber);
+		BigInteger x = extendedGcd[2];
+		//Verificação para caso x seja um número negativo
+		BigInteger dNumber = Euclidean.validateModularInverse(x, phi);
+		//BigInteger dNumber = eNumber.modInverse(phi);
 		
 		return dNumber;
 	}

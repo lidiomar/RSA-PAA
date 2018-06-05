@@ -7,14 +7,20 @@ public class Euclidean {
 	public static BigInteger[] gcdExtended(BigInteger a, BigInteger b){
 		if (b.equals(BigInteger.ZERO))
 			return new BigInteger[] {a, BigInteger.ONE, BigInteger.ZERO};
-		                                                         //  0   1   2 
-		BigInteger[] triple = gcdExtended(b, a.mod(b)); //retorna d', x', y'
+		                                                      
+		BigInteger[] triple = gcdExtended(b, a.mod(b)); 
 		BigInteger x = triple[1];
 		triple[1] = triple[2];
 		triple[2] = x.subtract(a.divide(b).multiply(triple[2]));
+	
 		return triple;
 	}
-	
+	public static BigInteger validateModularInverse(BigInteger b, BigInteger phi) {
+		if(b.compareTo(BigInteger.ZERO) == -1) {
+			return b.mod(phi);
+		}
+		return b;
+	}
 	//Complexidade O(log n)
 	public static BigInteger gcd(BigInteger p, BigInteger q) {
 		if(q.equals(BigInteger.ZERO)) {
