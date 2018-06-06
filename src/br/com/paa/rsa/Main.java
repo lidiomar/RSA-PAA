@@ -46,8 +46,7 @@ public class Main {
 		
 		EncryptionHelper encryptionHelper = new EncryptionHelper();
 		
-		String messageToEncrypt = "Mensagem simples para criptografia Mensagem simples para criptografia";
-		encryptionHelper.encryptMessage(e, n, messageToEncrypt);
+		encryptionHelper.encryptMessage(e, n);
 		encryptionHelper.decryptFromFile(d, n);
 	}
 	
