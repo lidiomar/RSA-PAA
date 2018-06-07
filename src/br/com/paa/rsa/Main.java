@@ -9,7 +9,20 @@ public class Main {
 	
 	public static void main(String[]args) {
 		Main main = new Main();
-		main.execute();
+		//main.execute();
+		
+		BigInteger a = Rsa.generatePrimeNumber();
+		BigInteger b = Rsa.generatePrimeNumber();
+		
+		
+		BigInteger ab = a.multiply(b);
+		
+		
+		BigInteger[]factors = Factoring.getProductFactorsBruteForce(ab);
+		System.out.println(factors[0] +" * "+factors[1]);
+		System.out.println("#######################");
+		System.out.println(a +" - "+b);
+		System.out.println("ab - "+ab);
 	}
 	
 	public void breakKey() {

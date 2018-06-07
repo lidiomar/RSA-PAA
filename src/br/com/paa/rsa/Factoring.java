@@ -2,6 +2,8 @@ package br.com.paa.rsa;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Factoring {
 	private static SecureRandom random = new SecureRandom();
@@ -105,5 +107,28 @@ public class Factoring {
 		}
 		return randomNumber;
 	}
+	
+	public static BigInteger[] getProductFactorsBruteForce(BigInteger number) {
+		BigInteger factor1 = getFactorBruteForce(number);
+		BigInteger factor2 = number.divide(factor1);
+		return new BigInteger[]{factor1,factor2};
+	}
+	
+	public static BigInteger getFactorBruteForce(BigInteger number) {
+		BigInteger i = new BigInteger("3");
+		BigInteger inc = new BigInteger("2");
+		BigInteger notFound = new BigInteger("-1");
+		System.out.println(number);
+		while(i.compareTo(number) == -1) {
+			System.out.println(i);
+			if(number.mod(i) == BigInteger.ZERO) {
+				return i; 
+			}
+			i = i.add(inc);
+		}
+		return notFound;
+		
+	}
+	
 	
 }

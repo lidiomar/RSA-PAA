@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 
 public class Rsa  {
 	private static SecureRandom random = new SecureRandom();
-	private static final int len = 1024;
+	private static final int len = 32;
 	
 	public RsaKey generateKeys() {
 		BigInteger prime1 = generatePrimeNumber();
@@ -71,12 +71,14 @@ public class Rsa  {
 	}
 	
 	//Considerado O(1)
+	
 	private BigInteger getNumberN(BigInteger prime1, BigInteger prime2) {
 		BigInteger nNumber = prime1.multiply(prime2);
 		return nNumber;
 	}
 	
 	//Considerado O(k log^3 n)
+	
 	public static BigInteger generatePrimeNumber() {
 		BigInteger primeNumber = new BigInteger(len, 100, random);
 		
@@ -87,11 +89,9 @@ public class Rsa  {
 	}
 	
 	//Considerado O(1), não consta na documentação 
-	private BigInteger executeTotientFunction(BigInteger prime1, BigInteger prime2) {
-		
-		BigInteger phi = (prime1.subtract(BigInteger.ONE))
-                .multiply(prime2.subtract(BigInteger.ONE));
-		
+	
+	private BigInteger executeTotientFunction(BigInteger prime1, BigInteger prime2) {	
+		BigInteger phi = (prime1.subtract(BigInteger.ONE)).multiply(prime2.subtract(BigInteger.ONE));
 		return phi;
 	}
 
