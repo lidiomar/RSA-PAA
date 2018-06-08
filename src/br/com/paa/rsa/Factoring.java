@@ -118,9 +118,9 @@ public class Factoring {
 		BigInteger i = new BigInteger("3");
 		BigInteger inc = new BigInteger("2");
 		BigInteger notFound = new BigInteger("-1");
-		System.out.println(number);
+	
 		while(i.compareTo(number) == -1) {
-			System.out.println(i);
+			
 			if(number.mod(i) == BigInteger.ZERO) {
 				return i; 
 			}

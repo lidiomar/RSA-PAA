@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 
 public class Rsa  {
 	private static SecureRandom random = new SecureRandom();
-	private static final int len = 32;
+	private static final int len = 256;
 	
 	public RsaKey generateKeys() {
 		BigInteger prime1 = generatePrimeNumber();
